@@ -2,4 +2,5 @@
     <string name="app_name">RTU_Sample3</string>
     <string name="newItem">add new item</string>
     <string name="addButton">Add</string>
+    <string name="quantity_text" translatable="false">%d %s</string>
 </resources>
