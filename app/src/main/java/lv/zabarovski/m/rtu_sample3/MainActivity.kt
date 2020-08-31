@@ -1,28 +1,23 @@
 package lv.zabarovski.m.rtu_sample3
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.util.AttributeSet
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
+
+private var myItems: MutableList<ItemList> =
+    mutableListOf(ItemList("Apple", 1, "kg"), ItemList("Orange", 2, "pc"))
 
 
 class MainActivity : AppCompatActivity() {
     private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var adapter: ItemListAdapter
-    private var myItems: MutableList<ItemList> =
-        mutableListOf(ItemList("Apple", 1, "kg"), ItemList("Orange", 2, "pc"))
+
     companion object {
+
         const val ITEM_NAME = "lv.zabarovski.m.rtu_sample3.ITEM"
         const val ITEM_REQUEST = 5555
         const val NAME_REPLY = "lv.zabarovski.m.rtu_sample3.NAME_REPLY"
@@ -63,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                 val itemName = data.getStringExtra(NAME_REPLY)
                 val itemCount = data.getStringExtra(QUANTITY_REPLY)
                 val itemUnit = data.getStringExtra(UNIT_REPLY)
-                Toast.makeText(this,itemName + itemCount.toString() + itemUnit.toString(),Toast.LENGTH_LONG).show()
+                //Toast.makeText(this,itemName + itemCount.toString() + itemUnit.toString(),Toast.LENGTH_LONG).show()
                 if (itemCount != null) {
                     myItems.add(ItemList(itemName.toString(),itemCount.toInt(),itemUnit.toString()))
                 }
@@ -73,3 +68,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
+fun deleteItem(position: Int) {
+    myItems.removeAt(position)
+}
+

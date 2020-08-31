@@ -1,13 +1,10 @@
 package lv.zabarovski.m.rtu_sample3
 
-import android.content.Context
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.item_layout.view.*
 
@@ -28,10 +25,17 @@ class ItemListAdapter(private val items: List<ItemList>) : RecyclerView.Adapter<
         val context = holder.itemView.context
         holder.itemView.itemNameCheckbox.text = item.name
         holder.itemView.itemQuantity.text = context.resources.getString(R.string.quantity_text, item.quantity, item.unit)
-
         holder.itemView.setOnClickListener{
             Toast.makeText(context, item.name, Toast.LENGTH_SHORT).show()
         }
+        holder.itemView.itemDelete.setOnClickListener{
+            //Toast.makeText(context, item.name, Toast.LENGTH_SHORT).show()
+            deleteItem(position)
+            notifyDataSetChanged()
+        }
+
     }
 
 }
+
+
