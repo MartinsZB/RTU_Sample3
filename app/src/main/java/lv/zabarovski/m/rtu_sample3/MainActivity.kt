@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
 private var myItems: MutableList<ItemList> =
@@ -29,7 +30,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         linearLayoutManager = LinearLayoutManager(this)
-        rvMainItemList.layoutManager = linearLayoutManager
+
+        //rvMainItemList.layoutManager = linearLayoutManager
+        rvMainItemList.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+
         adapter = ItemListAdapter(myItems)
         rvMainItemList.adapter = adapter
 
@@ -62,7 +66,8 @@ class MainActivity : AppCompatActivity() {
                 if (itemCount != null) {
                     myItems.add(ItemList(itemName.toString(),itemCount.toInt(),itemUnit.toString()))
                 }
-                adapter.notifyDataSetChanged()
+                //adapter.notifyDataSetChanged()
+                adapter.notifyItemInserted(myItems.size)
             }
         }
     }
@@ -71,4 +76,5 @@ class MainActivity : AppCompatActivity() {
 fun deleteItem(position: Int) {
     myItems.removeAt(position)
 }
+
 
